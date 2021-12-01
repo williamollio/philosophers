@@ -4,7 +4,11 @@ CC = gcc
 
 INCLUDES = ./include/philosophers.h
 
-SRC = ./src/philosophers.c ./src/philosophers_utils.c
+SRC = ./src/philosophers.c \
+	./src/philosophers_utils.c \
+	./src/ft_allocate.c \
+	./src/ft_init.c \
+	./src/ft_philo.c
 
 OBJ = $(SRC:.c=.o)
 

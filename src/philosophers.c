@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wollio <williamollio@student.42.fr>        +#+  +:+       +#+        */
+/*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 18:35:32 by wollio            #+#    #+#             */
-/*   Updated: 2021/11/26 12:07:55 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/01 19:44:00 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,39 +22,18 @@
 
 int	main(int argc, char *argv[])
 {
-	t_table		t;
-	t_struct	s;
+	t_parse		*parse;
+	t_philo		*philo;
 
-	if (ft_init(argc, argv, &t))
+	parse = malloc(sizeof(t_parse));
+	// initialization of the parse struct
+	if (ft_parse_init(argc, argv, parse))
 		return (1);
-	t.forks = malloc(t.nbr * sizeof(pthread_mutex_t));
-	if (t.forks == 0)
-	{
-		ft_putstr_fd("Malloc of t_table has failed \n", 2);
+	// allocate & initialize the array of forks
+	if (ft_forks_init(parse))
 		return (1);
-	}
+	// creation of the threads
+	if (ft_philo(parse, &philo))
+		return (1);
 	return (0);
-		// struct = malloc(numphil * sizeof(t_struct));
-		// i = 0;
-		// pthread_mutex_init(&mutex, NULL);
-		// while (i < 4)
-		// {
-		// 	if (pthread_create(&s[i]->thread, NULL, &routine, &s[i])) // we give here the adress we are gonna store the handle
-		// 	{
-		// 	 	perror("creation of the thread has failed\n");
-		// 		return (1);
-		// 	}
-		// 	i++;
-		// }
-		// i = 0;
-		// while (i < 4)
-		// {
-		// 	if (pthread_join(&s[i]->thread, NULL)) // here we give the value
-		// 	{
-		// 		perror("joining of the threads has failed\n");
-		// 		return (2);
-		// 	}
-		// 	i++;
-		// }
-		// pthread_mutex_destroy(&mutex);
 }
