@@ -6,17 +6,20 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 19:44:16 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/01 19:44:46 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/02 18:18:06 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-int	ft_forks_init(t_parse *parse)
+int	ft_mutex_init(t_parse *parse)
 {
 	int	i;
+	t_philo *philo;
 
 	i = 0;
+	pthread_mutex_init(&parse->wait, NULL);
+	pthread_mutex_init(&parse->write_lock, NULL);
 	parse->forks = malloc(parse->nbr * sizeof(pthread_mutex_t));
 	if (parse->forks == 0)
 	{
@@ -52,5 +55,7 @@ int	ft_parse_init(int argc, char *argv[], t_parse *parse)
 		parse->time = ft_atoi(argv[5]);
 	else
 		parse->time = 0;
+	parse->wait_flag = 0;
+	parse->i = 0;
 	return (EXIT_SUCCESS);
 }

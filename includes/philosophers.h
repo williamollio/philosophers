@@ -22,28 +22,34 @@ struct
 
 typedef struct	s_parse
 {
-	int	nbr; // number_of_philosophers
-	int	die; // time_to_die
-	int	eat; // time_to_eat
-	int	sleep; // time_to_sleep
-	int	time; // xynumber_of_times_each_philosopher_must_eat
-	pthread_mutex_t *forks;
+	int				nbr; // init
+	int				die; // init
+	int				eat; // init
+	int				sleep; // init
+	int				time; // init
+	pthread_mutex_t	*forks; // allocate + init
+	pthread_mutex_t	wait; // init
+	pthread_mutex_t	write_lock; // init
+	int				wait_flag; // init
+	int				i; // init
 }				t_parse;
 
 typedef struct	s_philo
 {
-	pthread_t		thread;
-	int				id;
-	t_parse			*parse;
-	pthread_mutex_t	*right_fork;
-	pthread_mutex_t	*left_fork;
+	pthread_t		thread; // allocate + init
+	int				id; // init
+	int				is_dead; // init
+	t_parse			*parse; // ok
+	pthread_mutex_t	*right_fork; // no
+	pthread_mutex_t	*left_fork; // no
 }				t_philo;
 
 long	get_time(void);
 int		ft_parse_init(int argc, char *argv[], t_parse *parse);
-int		ft_forks_init(t_parse *parse);
+int		ft_mutex_init(t_parse *parse);
 int		ft_philo(t_parse *parse, t_philo **philo);
 t_philo	**ft_allocate_philo(t_philo **philo, t_parse *parse);
+void	philo_write(t_philo *philo, char *str);
 
 /* QUESTIONS */
 /* allocation philo struct */
