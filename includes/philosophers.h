@@ -20,6 +20,14 @@ struct
 
 // ./philosophers 5 800 200 200
 
+typedef enum u_state
+{
+	thinking,
+	eating,
+	sleeping,
+	dead,
+} t_state;
+
 typedef struct	s_parse
 {
 	int				nbr; // init
@@ -39,6 +47,7 @@ typedef struct	s_philo
 	pthread_t		thread; // allocate + init
 	int				id; // init
 	int				is_dead; // init
+	int				state; // no
 	t_parse			*parse; // ok
 	pthread_mutex_t	*right_fork; // ok
 	pthread_mutex_t	*left_fork; // ok
@@ -54,3 +63,6 @@ void	ft_usleep(long time);
 
 /* QUESTIONS */
 /* allocation philo struct */
+
+/* TO DO */
+/* destroy mutex before to quit */

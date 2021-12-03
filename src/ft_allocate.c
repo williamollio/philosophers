@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 19:43:04 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/03 11:11:27 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/03 17:58:19 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ t_philo **ft_allocate_philo(t_philo **philo, t_parse *parse)
 			ft_putstr_fd("Malloc of t_philo[i] has failed \n", 2);
 		philo[i]->parse = parse;
 		philo[i]->is_dead = 0;
+		philo[i]->state = thinking;
 		ft_init_forks(philo[i], parse, i);
 		i++;
 	}
