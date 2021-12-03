@@ -8,8 +8,8 @@ SRC = ./src/philosophers.c \
 	./src/philosophers_utils.c \
 	./src/ft_allocate.c \
 	./src/ft_init.c \
-	./src/ft_philo.c
-
+	./src/ft_philo.c \
+	./src/ft_state.c
 OBJ = $(SRC:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror

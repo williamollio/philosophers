@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 19:46:20 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/03 17:58:26 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/03 19:08:22 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	*routine(void *var)
 		}
 	}
 	pthread_mutex_unlock(&philo->parse->wait);
-	start = get_time();
+	philo->parse->start = get_time();
 	if (philo->id % 2 == 0)
 	{
 		pthread_mutex_lock(philo->right_fork);
@@ -44,8 +44,12 @@ void	*routine(void *var)
 	}
 	while (1)
 	{
-
-		break;
+		if (philo->state == thinking)
+			ft_eat(philo);
+		else if (philo->state == eating)
+			ft_sleep(philo);
+		else if (philo->state == sleeping)
+			ft_think(philo);
 	}
 	return (NULL);
 }

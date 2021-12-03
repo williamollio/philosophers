@@ -23,9 +23,10 @@ struct
 typedef enum u_state
 {
 	thinking,
+	taking_fork,
 	eating,
 	sleeping,
-	dead,
+	died,
 } t_state;
 
 typedef struct	s_parse
@@ -40,6 +41,7 @@ typedef struct	s_parse
 	pthread_mutex_t	write_lock; // init
 	int				wait_flag; // init
 	int				i; // init
+	int				start; // init
 }				t_parse;
 
 typedef struct	s_philo
@@ -47,7 +49,7 @@ typedef struct	s_philo
 	pthread_t		thread; // allocate + init
 	int				id; // init
 	int				is_dead; // init
-	int				state; // no
+	int				state; // yes
 	t_parse			*parse; // ok
 	pthread_mutex_t	*right_fork; // ok
 	pthread_mutex_t	*left_fork; // ok
@@ -60,6 +62,10 @@ int		ft_philo(t_parse *parse, t_philo **philo);
 t_philo	**ft_allocate_philo(t_philo **philo, t_parse *parse);
 void	philo_write(t_philo *philo, char *str, long start);
 void	ft_usleep(long time);
+void	ft_eat(t_philo *philo);
+void	ft_sleep(t_philo *philo);
+void	ft_think(t_philo *philo);
+void	print_state(t_philo *philo);
 
 /* QUESTIONS */
 /* allocation philo struct */
