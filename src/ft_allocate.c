@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 19:43:04 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/02 18:34:16 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/03 11:11:27 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,13 @@ void ft_init_forks(t_philo *philo, t_parse *parse, int i)
 {
 	if (i == 0)
 	{
-		philo->right_fork = &parse->forks[parse->nbr-1];
+		philo->right_fork = &parse->forks[parse->nbr - 1];
+		philo->left_fork = &parse->forks[i];
+	}
+	else
+	{
+		philo->right_fork = &parse->forks[i - 1];
+		philo->left_fork = &parse->forks[i];
 	}
 }
 

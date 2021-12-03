@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 19:46:20 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/02 16:40:29 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/03 12:17:35 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,8 @@
 
 void	*routine(void *var)
 {
-	int	i;
+	int		i;
+	long	start;
 
 	i = 0;
 	t_philo *philo;
@@ -30,15 +31,23 @@ void	*routine(void *var)
 		}
 	}
 	pthread_mutex_unlock(&philo->parse->wait);
-	philo_write(philo, "starts eating");
-	usleep(philo->parse->eat * 1000);
-	philo_write(philo, "finishes eating");
+	start = get_time();
+	if (philo->id % 2 == 0)
+	{
+		pthread_mutex_lock(philo->right_fork);
+		pthread_mutex_lock(philo->left_fork);
+		philo_write(philo, "starts eating", start);
+		ft_usleep(philo->parse->eat); // write change usleep
+		philo_write(philo, "finishes eating", start);
+		pthread_mutex_unlock(philo->right_fork);
+		pthread_mutex_unlock(philo->left_fork);
+	}
 	return (NULL);
 }
 
 int	ft_philo(t_parse *parse, t_philo **philo)
 {
-	int i;
+	int	i;
 
 	i = 0;
 	philo = ft_allocate_philo(philo, parse);

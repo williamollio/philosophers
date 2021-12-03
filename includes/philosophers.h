@@ -40,8 +40,8 @@ typedef struct	s_philo
 	int				id; // init
 	int				is_dead; // init
 	t_parse			*parse; // ok
-	pthread_mutex_t	*right_fork; // no
-	pthread_mutex_t	*left_fork; // no
+	pthread_mutex_t	*right_fork; // ok
+	pthread_mutex_t	*left_fork; // ok
 }				t_philo;
 
 long	get_time(void);
@@ -49,7 +49,8 @@ int		ft_parse_init(int argc, char *argv[], t_parse *parse);
 int		ft_mutex_init(t_parse *parse);
 int		ft_philo(t_parse *parse, t_philo **philo);
 t_philo	**ft_allocate_philo(t_philo **philo, t_parse *parse);
-void	philo_write(t_philo *philo, char *str);
+void	philo_write(t_philo *philo, char *str, long start);
+void	ft_usleep(long time);
 
 /* QUESTIONS */
 /* allocation philo struct */

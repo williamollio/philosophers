@@ -6,13 +6,26 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 10:24:38 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/02 16:44:29 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/03 12:18:34 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-void ft_putlong_fd(long n, int fd)
+void ft_usleep(long time)
+{
+	long start;
+
+	start = get_time();
+	while (1)
+	{
+		if (start + time <= get_time())
+			break;
+	}
+	return ;
+}
+
+void	ft_putlong_fd(long n, int fd)
 {
 	char	res;
 
@@ -33,23 +46,25 @@ void ft_putlong_fd(long n, int fd)
 }
 
 /** Returns the timestamp in milliseconds **/
-long get_time(void)
+long	get_time(void)
 {
 	struct timeval	tp;
 	long			milliseconds;
 
 	gettimeofday(&tp, NULL);
 	milliseconds = tp.tv_sec * 1000;
-	milliseconds = tp.tv_usec / 1000;
+	milliseconds += tp.tv_usec / 1000;
 	return (milliseconds);
 }
 
-void	philo_write(t_philo *philo, char *str)
+void	philo_write(t_philo *philo, char *str, long start)
 {
+	long	current;
 	pthread_mutex_lock(&philo->parse->write_lock);
 	if (!philo->is_dead)
 	{
-		ft_putlong_fd(get_time(), 1);
+		current = get_time() - start;
+		ft_putlong_fd(current, 1);
 		write (1, "\t", 1);
 		ft_putlong_fd(philo->id, 1);
 		write(1, " ", 1);
