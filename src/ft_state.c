@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 18:52:49 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/03 19:11:44 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/07 15:45:56 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,32 +18,43 @@ void	print_state(t_philo *philo)
 	pthread_mutex_lock(&philo->parse->write_lock);
 	current = get_time() - philo->parse->start;
 	if (philo->state == thinking)
-		printf("%ld", current, philo->id, "is thinking");
+		printf("%ld \t %d \t %s\n", current, philo->id, "is thinking");
 	if (philo->state == taking_fork)
-		printf("%ld", current, philo->id, "has taken a fork");
+		printf("%ld \t %d \t %s\n", current, philo->id, "has taken a fork");
 	if (philo->state == eating)
-		printf("%ld", current, philo->id, "is eating");
+		printf("%ld \t %d \t %s\n", current, philo->id, "is eating");
 	if (philo->state == sleeping)
-		printf("%ld", current, philo->id, "is sleeping");
+		printf("%ld \t %d \t %s\n", current, philo->id, "is sleeping");
 	if (philo->state == died)
-		printf("%ld", current, philo->id, "died");
+		printf("%ld \t %d \t %s\n", current, philo->id, "died");
 	pthread_mutex_unlock(&philo->parse->write_lock);
 }
 
 void	ft_eat(t_philo *philo)
 {
-
-	pthread_mutex_lock(&philo->right_fork);
+	pthread_mutex_lock(philo->right_fork);
 	philo->state = taking_fork;
+	pthread_mutex_lock(philo->left_fork);
 	print_state(philo);
-	pthread_mutex_unlock(&philo->right_fork);
+	print_state(philo);
+	philo->state = eating;
+	print_state(philo);
+	philo->death_clock = get_time() + philo->parse->die;
+	ft_usleep(philo->parse->eat);
+	pthread_mutex_unlock(philo->right_fork);
+	pthread_mutex_unlock(philo->left_fork);
+	philo->time_eat--;
 }
+
 void	ft_sleep(t_philo *philo)
 {
-
+	philo->state = sleeping;
+	print_state(philo);
+	ft_usleep(philo->parse->sleep);
 }
 
 void	ft_think(t_philo *philo)
 {
-
+	philo->state = thinking;
+	print_state(philo);
 }

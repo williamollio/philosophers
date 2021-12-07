@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 19:44:16 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/03 12:26:33 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/07 16:24:19 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,6 @@ int	ft_mutex_init(t_parse *parse)
 
 int	ft_parse_init(int argc, char *argv[], t_parse *parse)
 {
-
 	if (parse == 0)
 	{
 		ft_putstr_fd("Malloc of t_parse has failed \n", 2);
@@ -53,7 +52,7 @@ int	ft_parse_init(int argc, char *argv[], t_parse *parse)
 	if (argc == 6)
 		parse->time = ft_atoi(argv[5]);
 	else
-		parse->time = 0;
+		parse->time = -1;
 	parse->wait_flag = 0;
 	parse->i = 0;
 	return (EXIT_SUCCESS);

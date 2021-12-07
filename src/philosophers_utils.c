@@ -6,11 +6,22 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 10:24:38 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/03 12:18:34 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/07 14:31:46 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
+
+// void ft_unlock_all(t_philo *philo)
+// {
+// 	pthread_mutex_unlock()
+// }
+
+// void ft_quite(t_philo *philo)
+// {
+// 	ft_unlock_all(philo);
+
+// }
 
 void ft_usleep(long time)
 {
