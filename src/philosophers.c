@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 18:35:32 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/08 13:26:01 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/08 17:18:13 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	main(int argc, char *argv[])
 	// // destroy threads
 	if (ft_destroy_threads(parse, philo))
 		return (1);
-	// // destroy and unlock mutex
 	ft_destroy_mutex(parse, philo);
+	// // destroy and unlock mutex
 	return (0);
 }

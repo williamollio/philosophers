@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 19:46:20 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/08 14:45:15 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/08 18:29:20 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,11 @@ void *ft_checker(void *var)
 		{
 			if (get_time() > philo[i].death_clock)
 			{
-				philo->parse->running = FALSE;
+				printf("get_time() %ld \n", get_time());
+				printf("philo[i].death_clock %ld \n", philo[i].death_clock);
 				philo[i].state = died;
 				print_state(&philo[i]);
+				philo->parse->running = FALSE;
 				return (NULL);
 			}
 			if (philo->parse->time != INT_MAX && philo[i].time_eat <= 0)
@@ -104,7 +106,7 @@ t_philo	*ft_philo(t_parse *parse)
 		}
 		parse->i++;
 	}
-	ft_usleep(50);
+	ft_usleep(500);
 	if (pthread_create(&dead, NULL, &ft_checker, philo))
 	{
 	 	perror("Creation of the checker has failed\n");

@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 18:52:49 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/08 14:11:45 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/08 18:13:13 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,15 @@ void	print_state(t_philo *philo)
 	long	current;
 	pthread_mutex_lock(&philo->parse->write_lock);
 	current = get_time() - philo->parse->start;
-	if (philo->state == thinking)
+	if (philo->state == thinking && philo->parse->running == TRUE)
 		printf("%ld \t %d \t %s\n", current, philo->id, "is thinking");
-	if (philo->state == taking_fork)
+	if (philo->state == taking_fork && philo->parse->running == TRUE)
 		printf("%ld \t %d \t %s\n", current, philo->id, "has taken a fork");
-	if (philo->state == eating)
+	if (philo->state == eating && philo->parse->running == TRUE)
 		printf("%ld \t %d \t %s\n", current, philo->id, "is eating");
-	if (philo->state == sleeping)
+	if (philo->state == sleeping && philo->parse->running == TRUE)
 		printf("%ld \t %d \t %s\n", current, philo->id, "is sleeping");
-	if (philo->state == died)
+	if (philo->state == died && philo->parse->running == TRUE)
 		printf("%ld \t %d \t %s\n", current, philo->id, "died");
 	pthread_mutex_unlock(&philo->parse->write_lock);
 }

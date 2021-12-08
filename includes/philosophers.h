@@ -13,8 +13,6 @@
 #define TRUE 1
 #define FALSE 0
 
-// ./philosophers 5 800 200 200
-
 typedef enum u_state
 {
 	thinking,
