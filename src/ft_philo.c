@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 19:46:20 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/07 17:40:10 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/08 14:45:15 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,20 +25,26 @@ void *ft_checker(void *var)
 		flag = 0;
 		while (i < philo->parse->nbr)
 		{
-			printf("shit in checker %d\n", i);
 			if (get_time() > philo[i].death_clock)
 			{
 				philo->parse->running = FALSE;
-				break;
+				philo[i].state = died;
+				print_state(&philo[i]);
+				return (NULL);
 			}
-			if (philo->parse->time && philo[i].time_eat == 0)
+			if (philo->parse->time != INT_MAX && philo[i].time_eat <= 0)
+			{
+				pthread_mutex_lock(&philo->parse->time_eat);
 				flag++;
+				pthread_mutex_unlock(&philo->parse->time_eat);
+			}
 			i++;
 		}
 		if (flag == i)
 		{
 			philo->parse->running = FALSE;
-			break;
+			printf("Philosophers finish eating \n");
+			return (NULL);
 		}
 	}
 	return (NULL);
@@ -51,36 +57,28 @@ void	*ft_routine(void *var)
 	i = 0;
 	t_philo *philo;
 	philo = (t_philo *)var;
-	printf("shit0 in routine %d\n", philo->id);
 	pthread_mutex_lock(&philo->parse->wait);
-	printf("shit01 in routine %d\n", philo->id);
 	if (philo->parse->wait_flag == 0)
 	{
-		printf("shit10 in routine %d\n", philo->id);
 		philo->parse->wait_flag = 1;
-		printf("shit11 in routine %d\n", philo->id);
 		while (1)
 		{
 			if (philo->parse->i == philo->parse->nbr)
 				break;
 		}
 	}
-	printf("shit2 in routine %d\n", philo->id);
 	pthread_mutex_unlock(&philo->parse->wait);
-	printf("shit21 in routine %d\n", philo->id);
 	philo->parse->start = get_time();
-	printf("shit22 in routine %d\n", philo->id);
 	philo->time_eat = philo->parse->time;
-	printf("shit23 in routine %d\n", philo->id);
 	philo->death_clock = philo->parse->start + philo->parse->die;
-	printf("shit3 in routine %d\n", philo->id);
 	if (philo->id % 2 != 0)
 		ft_usleep(philo->parse->eat / 2);
-	printf("shit4 in routine %d\n", philo->id);
-	while (philo->parse->running && philo->parse->time != 0)
+	while (philo->parse->running == TRUE)
 	{
 		if (philo->state == thinking)
 			ft_eat(philo);
+		if (philo->time_eat == 0)
+			break;
 		if (philo->state == eating)
 			ft_sleep(philo);
 		if (philo->state == sleeping)
@@ -106,6 +104,7 @@ t_philo	*ft_philo(t_parse *parse)
 		}
 		parse->i++;
 	}
+	ft_usleep(50);
 	if (pthread_create(&dead, NULL, &ft_checker, philo))
 	{
 	 	perror("Creation of the checker has failed\n");

@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 19:43:04 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/07 17:32:43 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/08 11:29:45 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,26 @@ void ft_init_forks(t_philo *philo, t_parse *parse, int i)
 {
 	if (i == 0)
 	{
-		philo->right_fork = &parse->forks[parse->nbr - 1];
-		philo->left_fork = &parse->forks[i];
+		philo[i].right_fork = &parse->forks[parse->nbr - 1];
+		philo[i].left_fork = &parse->forks[i];
 	}
 	else
 	{
-		philo->right_fork = &parse->forks[i - 1];
-		philo->left_fork = &parse->forks[i];
+		philo[i].right_fork = &parse->forks[i - 1];
+		philo[i].left_fork = &parse->forks[i];
 	}
 }
 
-void ft_forks(t_parse *parse, t_philo **philo)
+void ft_forks(t_parse *parse, t_philo *philo)
 {
 	int	i;
 
 	i = 0;
 	while (i < parse->nbr)
 	{
-		philo[i]->parse = parse;
-		ft_init_forks(philo[i], parse, i);
+		philo[i].parse = parse;
+		ft_init_forks(philo, parse, i);
+		pthread_mutex_init(philo[i].left_fork, NULL);
 		i++;
 	}
 }
@@ -47,6 +48,6 @@ t_philo *ft_allocate_philo(t_parse *parse)
 	philo = (t_philo *)malloc(parse->nbr * sizeof(t_philo));
 	if (philo == 0)
 			ft_putstr_fd("Malloc of t_philo[i] has failed \n", 2);
-	ft_forks(parse, &philo);
+	ft_forks(parse, philo);
 	return (philo);
 }

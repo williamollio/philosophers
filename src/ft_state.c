@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 18:52:49 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/07 15:45:56 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/08 14:11:45 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ void	ft_eat(t_philo *philo)
 	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
 	philo->time_eat--;
+	//printf("philo->time_eat %d id %d\n", philo->time_eat, philo->id);
 }
 
 void	ft_sleep(t_philo *philo)

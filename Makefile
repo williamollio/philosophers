@@ -9,10 +9,12 @@ SRC = ./src/philosophers.c \
 	./src/ft_allocate.c \
 	./src/ft_init.c \
 	./src/ft_philo.c \
-	./src/ft_state.c
+	./src/ft_state.c \
+	./src/ft_destroy.c
+
 OBJ = $(SRC:.c=.o)
 
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -lpthread
 
 LIBFT_PATH = ./libft/
 
@@ -43,7 +45,7 @@ subsystem : header
 	cp ./libft/libft.a libft.a
 
 $(NAME): subsystem
-	$(CC) $(CFLAGS) $(SRC) libft.a -o philosophers
+	$(CC) $(CFLAGS) $(SRC) libft.a -o philo
 
 clean :
 	rm -f $(OBJ)
@@ -53,6 +55,6 @@ fclean: clean
 	rm -f $(NAME)
 	rm -f $(LIBFT_PATH)libft.a
 	rm -f libft.a
-	rm -f philosophers
+	rm -f philo
 
 re: fclean all

@@ -8,6 +8,7 @@
 #include <stdlib.h>
 #include "../libft/libft.h"
 #include <sys/time.h>
+#include <limits.h>
 
 #define TRUE 1
 #define FALSE 0
@@ -33,6 +34,7 @@ typedef struct	s_parse
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	wait;
 	pthread_mutex_t	write_lock;
+	pthread_mutex_t	time_eat;
 	int				wait_flag;
 	int				i;
 	long			start;
@@ -63,9 +65,9 @@ void	ft_eat(t_philo *philo);
 void	ft_sleep(t_philo *philo);
 void	ft_think(t_philo *philo);
 void	print_state(t_philo *philo);
-void	ft_destroy_mutex(t_parse *parse);
+void	ft_destroy_mutex(t_parse *parse, t_philo *philo);
 int		ft_destroy_threads(t_parse *parse, t_philo *philo);
-void	ft_forks(t_parse *parse, t_philo **philo);
+void	ft_forks(t_parse *parse, t_philo *philo);
 
 //void	ft_quite(t_philo *philo);
 
