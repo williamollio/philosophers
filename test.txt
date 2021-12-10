@@ -22,18 +22,18 @@ run for ever
 ./philo 30 550 200 200 // NOPE little difference while dieing
 run for ever
 
-./philo 30 800 200 200 7 // NOPE little difference while dieing
+./philo 30 800 200 200 7 // NOPE died before sometimes
 end after 7 meals_per_philo
 
-./philo 99 620 200 200
+./philo 99 620 200 200 // NOPE
 run for ever
 
-./philo 98 440 200 200
+./philo 98 440 200 200 // NOPE
 run for ever
 
-./philo 198 440 200 200
+./philo 198 440 200 200 // NOPE
 run for ever
 
-./philo 199 620 200 200
+./philo 199 620 200 200 // NOPE
 run for ever
 

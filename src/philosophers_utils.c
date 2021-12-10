@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 10:24:38 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/07 14:31:46 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/10 17:19:23 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void ft_usleep(long time)
 	{
 		if (start + time <= get_time())
 			break;
+		usleep(100);
 	}
 	return ;
 }
