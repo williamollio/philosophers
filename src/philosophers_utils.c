@@ -3,24 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wollio <williamollio@student.42.fr>        +#+  +:+       +#+        */
+/*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 10:24:38 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/13 12:18:41 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/13 14:32:05 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-void ft_usleep(long time)
+void	ft_usleep(long time)
 {
-	long start;
+	long	start;
 
 	start = get_time();
 	while (1)
 	{
 		if (start + time <= get_time())
-			break;
+			break ;
 		usleep(100);
 	}
 	return ;
@@ -30,7 +30,7 @@ void	ft_putlong_fd(long n, int fd)
 {
 	char	res;
 
-	if (n <=-2147483648)
+	if (n <= -2147483648)
 	{
 		write(fd, "-2147483648", 11);
 		return ;
@@ -60,6 +60,7 @@ long	get_time(void)
 void	philo_write(t_philo *philo, char *str, long start)
 {
 	long	current;
+
 	pthread_mutex_lock(&philo->parse->write_lock);
 	if (!philo->is_dead)
 	{

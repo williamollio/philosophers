@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_state.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wollio <williamollio@student.42.fr>        +#+  +:+       +#+        */
+/*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 18:52:49 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/13 12:38:53 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/13 14:33:09 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 void	print_state(t_philo *philo)
 {
 	long	current;
+
 	pthread_mutex_lock(&philo->parse->write_lock);
 	current = get_time() - philo->parse->start;
 	if (philo->state == thinking && philo->parse->running == TRUE)
@@ -32,7 +33,6 @@ void	print_state(t_philo *philo)
 
 void	ft_eat(t_philo *philo)
 {
-
 	pthread_mutex_lock(philo->right_fork);
 	philo->state = taking_fork;
 	if (philo->parse->nbr == 1)
@@ -40,7 +40,7 @@ void	ft_eat(t_philo *philo)
 		print_state(philo);
 		ft_usleep(philo->parse->die * 2);
 		pthread_mutex_unlock(philo->right_fork);
-		return;
+		return ;
 	}
 	pthread_mutex_lock(philo->left_fork);
 	print_state(philo);

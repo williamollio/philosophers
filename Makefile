@@ -10,7 +10,8 @@ SRC = ./src/philosophers.c \
 	./src/ft_init.c \
 	./src/ft_philo.c \
 	./src/ft_state.c \
-	./src/ft_destroy.c
+	./src/ft_destroy.c \
+	./src/ft_checker.c
 
 OBJ = $(SRC:.c=.o)
 

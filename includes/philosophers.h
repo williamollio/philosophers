@@ -1,17 +1,29 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philosophers.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/12/13 14:41:13 by wollio            #+#    #+#             */
+/*   Updated: 2021/12/13 14:55:11 by wollio           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILOSOPHERS_H
-#define PHILOSOPHERS_H
+# define PHILOSOPHERS_H
 
-#include <stdbool.h>
-#include <pthread.h>
-#include <stdio.h>
-#include <unistd.h>
-#include <stdlib.h>
-#include "../libft/libft.h"
-#include <sys/time.h>
-#include <limits.h>
+# include <stdbool.h>
+# include <pthread.h>
+# include <stdio.h>
+# include <unistd.h>
+# include <stdlib.h>
+# include "../libft/libft.h"
+# include <sys/time.h>
+# include <limits.h>
 
-#define TRUE 1
-#define FALSE 0
+# define TRUE 1
+# define FALSE 0
 
 typedef enum u_state
 {
@@ -22,7 +34,15 @@ typedef enum u_state
 	died,
 }			t_state;
 
-typedef struct	s_parse
+typedef struct s_parsing
+{
+	long	nbr;
+	long	die;
+	long	eat;
+	long	sleep;
+	long	time;
+}			t_parsing;
+typedef struct s_parse
 {
 	int				nbr;
 	int				die;
@@ -39,7 +59,7 @@ typedef struct	s_parse
 	bool			running;
 }				t_parse;
 
-typedef struct	s_philo
+typedef struct s_philo
 {
 	pthread_t		thread;
 	long			death_clock;
@@ -66,5 +86,6 @@ void	print_state(t_philo *philo);
 void	ft_destroy_mutex(t_parse *parse, t_philo *philo);
 int		ft_destroy_threads(t_parse *parse, t_philo *philo);
 void	ft_forks(t_parse *parse, t_philo *philo);
+void	*ft_checker(void *var);
 
 #endif

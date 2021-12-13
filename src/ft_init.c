@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wollio <williamollio@student.42.fr>        +#+  +:+       +#+        */
+/*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 19:44:16 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/13 12:15:47 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/13 14:48:00 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,42 +31,33 @@ int	ft_mutex_init(t_parse *parse)
 
 int	ft_parsing(int argc, char *argv[])
 {
-	long nbr;
-	long die;
-	long eat;
-	long sleep;
-	long time;
+	t_parsing	parsing;
 
-	nbr = ft_atol(argv[1]); // manage failures
-	die = ft_atol(argv[2]);
-	eat = ft_atol(argv[3]);
-	sleep = ft_atol(argv[4]);
+	parsing.nbr = ft_atol(argv[1]);
+	parsing.die = ft_atol(argv[2]);
+	parsing.eat = ft_atol(argv[3]);
+	parsing.sleep = ft_atol(argv[4]);
 	if (argc == 6)
-		time = ft_atol(argv[5]);
+		parsing.time = ft_atol(argv[5]);
 	else
-		time = INT_MAX;
-	if (nbr > INT_MAX || nbr < 0
-		|| die > INT_MAX || die < 0
-		|| eat > INT_MAX || eat < 0
-		|| sleep > INT_MAX || sleep < 0
-		|| time > INT_MAX || time < 0)
+		parsing.time = INT_MAX;
+	if (parsing.nbr > INT_MAX || parsing.nbr < 0
+		|| parsing.die > INT_MAX || parsing.die < 0
+		|| parsing.eat > INT_MAX || parsing.eat < 0
+		|| parsing.sleep > INT_MAX || parsing.sleep < 0
+		|| parsing.time > INT_MAX || parsing.time < 0)
 		return (EXIT_FAILURE);
-	if ((nbr == 0 && ft_strncmp(argv[1], "0", 1))
-		|| (die == 0 && ft_strncmp(argv[2], "0", 1))
-		|| (eat == 0 && ft_strncmp(argv[3], "0", 1))
-		|| (sleep == 0 && ft_strncmp(argv[4], "0", 1))
-		|| (time == 0 && ft_strncmp(argv[5], "0", 1)))
+	if ((parsing.nbr == 0 && ft_strncmp(argv[1], "0", 1))
+		|| (parsing.die == 0 && ft_strncmp(argv[2], "0", 1))
+		|| (parsing.eat == 0 && ft_strncmp(argv[3], "0", 1))
+		|| (parsing.sleep == 0 && ft_strncmp(argv[4], "0", 1))
+		|| (parsing.time == 0 && ft_strncmp(argv[5], "0", 1)))
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
 
 int	ft_parse_init(int argc, char *argv[], t_parse *parse)
 {
-	if (parse == 0)
-	{
-		ft_putstr_fd("Malloc of t_parse has failed \n", 2);
-		return (EXIT_FAILURE);
-	}
 	if (argc < 5 || argc > 6)
 	{
 		ft_putstr_fd("Wrong numbers of arguments \n", 2);
@@ -85,7 +76,6 @@ int	ft_parse_init(int argc, char *argv[], t_parse *parse)
 		parse->time = ft_atoi(argv[5]);
 	else
 		parse->time = INT_MAX;
-
 	parse->wait_flag = 0;
 	parse->i = 0;
 	return (EXIT_SUCCESS);

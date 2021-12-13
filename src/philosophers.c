@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wollio <williamollio@student.42.fr>        +#+  +:+       +#+        */
+/*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 18:35:32 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/13 12:15:36 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/13 14:48:05 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,11 @@ int	main(int argc, char *argv[])
 	t_philo		*philo;
 
 	parse = malloc(sizeof(t_parse));
+	if (parse == 0)
+	{
+		ft_putstr_fd("Malloc of t_parse has failed \n", 2);
+		return (EXIT_FAILURE);
+	}
 	if (ft_parse_init(argc, argv, parse))
 		return (1);
 	if (ft_mutex_init(parse))

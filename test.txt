@@ -7,7 +7,7 @@ run for ever
 ./philo 5 800 200 200 // OK
 run for ever
 
-./philo 5 800 200 200 7 // OK
+./philo 5 800 200 200 7 | grep eating | wc -l // OK
 end after 7 meals_per_philo
 
 ./philo 4 410 200 200 // OK
@@ -25,15 +25,15 @@ run for ever
 ./philo 30 800 200 200 7 // OK
 end after 7 meals_per_philo
 
-./philo 99 620 200 200 // NOPE
+./philo 99 620 200 200 // OK
 run for ever
 
-./philo 98 440 200 200 // NOPE
+./philo 98 440 200 200 // OK
 run for ever
 
-./philo 198 440 200 200 // NOPE
+./philo 198 440 200 200 // OK
 run for ever
 
-./philo 199 620 200 200 // NOPE
+./philo 199 620 200 200 // OK
 run for ever
 
