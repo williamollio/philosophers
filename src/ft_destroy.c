@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_destroy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wollio <williamollio@student.42.fr>        +#+  +:+       +#+        */
+/*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:54:13 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/13 12:19:31 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/13 18:59:55 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_destroy_threads(t_parse *parse, t_philo *philo)
 	{
 		if (pthread_join(philo[i].thread, NULL))
 		{
-			perror("Joining of the threads has failed\n");
+			perror("Joining of the threads has failed\n"); //
 			return (EXIT_FAILURE);
 		}
 		i++;
@@ -45,5 +45,5 @@ void	ft_destroy_mutex(t_parse *parse, t_philo *philo)
 	pthread_mutex_unlock(&parse->write_lock);
 	pthread_mutex_destroy(&parse->write_lock);
 	pthread_mutex_unlock(&parse->time_eat);
-	pthread_mutex_lock(&parse->time_eat);
+	pthread_mutex_destroy(&parse->time_eat);
 }

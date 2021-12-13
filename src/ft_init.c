@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 19:44:16 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/13 14:48:00 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/13 18:59:02 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_parsing(int argc, char *argv[])
 		parsing.time = ft_atol(argv[5]);
 	else
 		parsing.time = INT_MAX;
-	if (parsing.nbr > INT_MAX || parsing.nbr < 0
+	if (parsing.nbr > INT_MAX || parsing.nbr <= 0
 		|| parsing.die > INT_MAX || parsing.die < 0
 		|| parsing.eat > INT_MAX || parsing.eat < 0
 		|| parsing.sleep > INT_MAX || parsing.sleep < 0
