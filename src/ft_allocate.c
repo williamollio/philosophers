@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_allocate.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wollio <williamollio@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 19:43:04 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/08 11:29:45 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/13 12:19:44 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-void ft_init_forks(t_philo *philo, t_parse *parse, int i)
+void	ft_init_forks(t_philo *philo, t_parse *parse, int i)
 {
 	if (i == 0)
 	{
@@ -26,7 +26,7 @@ void ft_init_forks(t_philo *philo, t_parse *parse, int i)
 	}
 }
 
-void ft_forks(t_parse *parse, t_philo *philo)
+void	ft_forks(t_parse *parse, t_philo *philo)
 {
 	int	i;
 
@@ -40,8 +40,7 @@ void ft_forks(t_parse *parse, t_philo *philo)
 	}
 }
 
-/* actually allocate and init */
-t_philo *ft_allocate_philo(t_parse *parse)
+t_philo	*ft_allocate_philo(t_parse *parse)
 {
 	t_philo	*philo;
 

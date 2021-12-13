@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_state.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wollio <williamollio@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/03 18:52:49 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/08 18:13:13 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/13 12:38:53 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,16 @@ void	print_state(t_philo *philo)
 
 void	ft_eat(t_philo *philo)
 {
+
 	pthread_mutex_lock(philo->right_fork);
 	philo->state = taking_fork;
+	if (philo->parse->nbr == 1)
+	{
+		print_state(philo);
+		ft_usleep(philo->parse->die * 2);
+		pthread_mutex_unlock(philo->right_fork);
+		return;
+	}
 	pthread_mutex_lock(philo->left_fork);
 	print_state(philo);
 	print_state(philo);
@@ -44,7 +52,6 @@ void	ft_eat(t_philo *philo)
 	pthread_mutex_unlock(philo->right_fork);
 	pthread_mutex_unlock(philo->left_fork);
 	philo->time_eat--;
-	//printf("philo->time_eat %d id %d\n", philo->time_eat, philo->id);
 }
 
 void	ft_sleep(t_philo *philo)

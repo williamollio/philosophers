@@ -67,6 +67,4 @@ void	ft_destroy_mutex(t_parse *parse, t_philo *philo);
 int		ft_destroy_threads(t_parse *parse, t_philo *philo);
 void	ft_forks(t_parse *parse, t_philo *philo);
 
-//void	ft_quite(t_philo *philo);
-
 #endif

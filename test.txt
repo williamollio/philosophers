@@ -1,4 +1,4 @@
-./philo 1 800 200 200
+./philo 1 800 200 200 // OK
 die after 800 milliseconds
 
 ./philo 2 420 200 200 // OK
@@ -19,10 +19,10 @@ run for ever
 ./philo 3 550 200 200 // OK
 1 must die
 
-./philo 30 550 200 200 // NOPE little difference while dieing
+./philo 30 550 200 200 // OK
 run for ever
 
-./philo 30 800 200 200 7 // NOPE died before sometimes
+./philo 30 800 200 200 7 // OK
 end after 7 meals_per_philo
 
 ./philo 99 620 200 200 // NOPE

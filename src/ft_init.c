@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_init.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wollio <williamollio@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 19:44:16 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/10 17:40:55 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/13 12:15:47 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int	ft_parse_init(int argc, char *argv[], t_parse *parse)
 		ft_putstr_fd("False inputs \n", 2);
 		return (EXIT_FAILURE);
 	}
-	parse->nbr = ft_atoi(argv[1]); // manage failures
+	parse->nbr = ft_atoi(argv[1]);
 	parse->die = ft_atoi(argv[2]);
 	parse->eat = ft_atoi(argv[3]);
 	parse->sleep = ft_atoi(argv[4]);

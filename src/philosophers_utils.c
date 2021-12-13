@@ -3,25 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers_utils.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wollio <williamollio@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/26 10:24:38 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/10 17:19:23 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/13 12:18:41 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
-
-// void ft_unlock_all(t_philo *philo)
-// {
-// 	pthread_mutex_unlock()
-// }
-
-// void ft_quite(t_philo *philo)
-// {
-// 	ft_unlock_all(philo);
-
-// }
 
 void ft_usleep(long time)
 {
@@ -57,7 +46,6 @@ void	ft_putlong_fd(long n, int fd)
 	write(fd, &res, 1);
 }
 
-/** Returns the timestamp in milliseconds **/
 long	get_time(void)
 {
 	struct timeval	tp;

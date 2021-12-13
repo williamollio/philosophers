@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philosophers.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wollio <williamollio@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 18:35:32 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/10 16:29:12 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/13 12:15:36 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,18 +18,13 @@ int	main(int argc, char *argv[])
 	t_philo		*philo;
 
 	parse = malloc(sizeof(t_parse));
-	// initialization of the parse struct
 	if (ft_parse_init(argc, argv, parse))
 		return (1);
-	// allocate & initialize the array of forks
 	if (ft_mutex_init(parse))
 		return (1);
-	// creation of the threads
 	philo = ft_philo(parse);
-	// destroy threads
 	if (ft_destroy_threads(parse, philo))
 		return (1);
 	ft_destroy_mutex(parse, philo);
-	// destroy and unlock mutex
 	return (0);
 }

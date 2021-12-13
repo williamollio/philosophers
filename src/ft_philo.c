@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_philo.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
+/*   By: wollio <williamollio@student.42.fr>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 19:46:20 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/10 17:29:00 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/13 12:34:34 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/philosophers.h"
 
-void *ft_checker(void *var)
+void	*ft_checker(void *var)
 {
 	t_philo	*philo;
 	int		i;
@@ -27,8 +27,6 @@ void *ft_checker(void *var)
 		{
 			if (get_time() > philo[i].death_clock)
 			{
-				printf("get_time() %ld \n", get_time());
-				printf("philo[i].death_clock %ld \n", philo[i].death_clock);
 				philo[i].state = died;
 				print_state(&philo[i]);
 				philo->parse->running = FALSE;
@@ -87,7 +85,6 @@ void	*ft_routine(void *var)
 		if (philo->state == sleeping)
 			ft_think(philo);
 	}
-	//ft_quite(philo);
 	return (NULL);
 }
 
