@@ -11,13 +11,12 @@ SRC = ./src/philosophers.c \
 	./src/ft_philo.c \
 	./src/ft_state.c \
 	./src/ft_destroy.c \
-	./src/ft_checker.c
+	./src/ft_checker.c \
+	./src/ft_libft.c
 
 OBJ = $(SRC:.c=.o)
 
 CFLAGS = -Wall -Wextra -Werror -lpthread
-
-LIBFT_PATH = ./libft/
 
 all: $(NAME)
 
@@ -41,21 +40,14 @@ export HEADER
 header:
 	@echo "\x1b[35m$$HEADER\x1b[0m"
 
-subsystem : header
-	make -C ./libft
-	cp ./libft/libft.a libft.a
-
-$(NAME): subsystem
-	$(CC) $(CFLAGS) $(SRC) libft.a -o philo
+$(NAME): header
+	$(CC) $(CFLAGS) $(SRC) -o philo
 
 clean :
 	rm -f $(OBJ)
-	rm -f $(LIBFT_PATH)*.o
 
 fclean: clean
 	rm -f $(NAME)
-	rm -f $(LIBFT_PATH)libft.a
-	rm -f libft.a
 	rm -f philo
 
 re: fclean all

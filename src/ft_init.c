@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 19:44:16 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/13 18:59:02 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/14 16:37:45 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	ft_mutex_init(t_parse *parse)
 {
-	int		i;
+	int	i;
 
 	i = 0;
 	pthread_mutex_init(&parse->wait, NULL);

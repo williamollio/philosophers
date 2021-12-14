@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 14:41:13 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/13 14:55:11 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/14 16:32:48 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@
 # include <stdio.h>
 # include <unistd.h>
 # include <stdlib.h>
-# include "../libft/libft.h"
 # include <sys/time.h>
 # include <limits.h>
 
@@ -42,7 +41,7 @@ typedef struct s_parsing
 	long	sleep;
 	long	time;
 }			t_parsing;
-typedef struct s_parse
+typedef struct s_parse // 1 main
 {
 	int				nbr;
 	int				die;
@@ -59,7 +58,7 @@ typedef struct s_parse
 	bool			running;
 }				t_parse;
 
-typedef struct s_philo
+typedef struct s_philo // struct for each philo
 {
 	pthread_t		thread;
 	long			death_clock;
@@ -87,5 +86,13 @@ void	ft_destroy_mutex(t_parse *parse, t_philo *philo);
 int		ft_destroy_threads(t_parse *parse, t_philo *philo);
 void	ft_forks(t_parse *parse, t_philo *philo);
 void	*ft_checker(void *var);
+
+/** LIBFT FUNCTIONS **/
+int		ft_strncmp(const char *str1, const char *str2, size_t num);
+long	ft_atol(const char *str);
+int		ft_atoi(const char *str);
+void	ft_putstr_fd(char *s, int fd);
+void	ft_putnbr_fd(int n, int fd);
+size_t	ft_strlen(const char *str);
 
 #endif

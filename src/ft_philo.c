@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 19:46:20 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/13 18:58:44 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/14 16:35:49 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,7 +68,9 @@ t_philo	*ft_philo(t_parse *parse)
 		if (pthread_create(&philo[parse->i].thread, NULL,
 				&ft_routine, &philo[parse->i]))
 		{
-			perror("Creation of the thread has failed\n"); //
+			philo = NULL;
+			ft_putstr_fd("Creation of the thread has failed\n", 1);
+			return (philo);
 		}
 		ft_usleep(100);
 		parse->i++;
@@ -76,7 +78,9 @@ t_philo	*ft_philo(t_parse *parse)
 	ft_usleep(100);
 	if (pthread_create(&dead, NULL, &ft_checker, philo))
 	{
-		perror("Creation of the checker has failed\n"); //
+		philo = NULL;
+		ft_putstr_fd("Creation of the checker has failed\n", 1);
+		return (philo);
 	}
 	pthread_join(dead, NULL);
 	return (philo);

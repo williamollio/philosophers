@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 18:35:32 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/13 14:48:05 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/14 16:38:08 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,12 +24,14 @@ int	main(int argc, char *argv[])
 		return (EXIT_FAILURE);
 	}
 	if (ft_parse_init(argc, argv, parse))
-		return (1);
+		return (EXIT_FAILURE);
 	if (ft_mutex_init(parse))
-		return (1);
+		return (EXIT_FAILURE);
 	philo = ft_philo(parse);
+	if (philo == NULL)
+		return (EXIT_FAILURE);
 	if (ft_destroy_threads(parse, philo))
-		return (1);
+		return (EXIT_FAILURE);
 	ft_destroy_mutex(parse, philo);
-	return (0);
+	return (EXIT_SUCCESS);
 }
