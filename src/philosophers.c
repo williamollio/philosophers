@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/22 18:35:32 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/14 16:38:08 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/14 16:47:54 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ int	main(int argc, char *argv[])
 		return (EXIT_FAILURE);
 	philo = ft_philo(parse);
 	if (philo == NULL)
+		return (EXIT_FAILURE);
+	if (ft_thread_checker(philo))
 		return (EXIT_FAILURE);
 	if (ft_destroy_threads(parse, philo))
 		return (EXIT_FAILURE);

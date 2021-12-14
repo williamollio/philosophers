@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/08 12:54:13 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/13 18:59:55 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/14 16:45:56 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	ft_destroy_threads(t_parse *parse, t_philo *philo)
 	{
 		if (pthread_join(philo[i].thread, NULL))
 		{
-			perror("Joining of the threads has failed\n"); //
+			ft_putstr_fd("Joining of the threads has failed\n", 1);
 			return (EXIT_FAILURE);
 		}
 		i++;

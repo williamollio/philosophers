@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/01 19:46:20 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/14 16:35:49 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/14 16:48:14 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,11 @@ void	*ft_routine(void *var)
 
 t_philo	*ft_philo(t_parse *parse)
 {
-	pthread_t	dead;
 	t_philo		*philo;
 
 	philo = ft_allocate_philo(parse);
+	if (philo == NULL)
+		return (philo);
 	parse->running = TRUE;
 	while (parse->i < parse->nbr)
 	{
@@ -76,12 +77,5 @@ t_philo	*ft_philo(t_parse *parse)
 		parse->i++;
 	}
 	ft_usleep(100);
-	if (pthread_create(&dead, NULL, &ft_checker, philo))
-	{
-		philo = NULL;
-		ft_putstr_fd("Creation of the checker has failed\n", 1);
-		return (philo);
-	}
-	pthread_join(dead, NULL);
 	return (philo);
 }

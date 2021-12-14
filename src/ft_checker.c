@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 14:51:35 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/13 15:11:59 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/14 16:43:13 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,4 +67,17 @@ void	*ft_checker(void *var)
 			return (NULL);
 	}
 	return (NULL);
+}
+
+int	ft_thread_checker(t_philo *philo)
+{
+	pthread_t	dead;
+
+	if (pthread_create(&dead, NULL, &ft_checker, philo))
+	{
+		ft_putstr_fd("Creation of the checker has failed\n", 1);
+		return (EXIT_FAILURE);
+	}
+	pthread_join(dead, NULL);
+	return (EXIT_SUCCESS);
 }

@@ -6,7 +6,7 @@
 /*   By: wollio <wollio@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/13 14:41:13 by wollio            #+#    #+#             */
-/*   Updated: 2021/12/14 16:32:48 by wollio           ###   ########.fr       */
+/*   Updated: 2021/12/14 16:47:23 by wollio           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	ft_destroy_mutex(t_parse *parse, t_philo *philo);
 int		ft_destroy_threads(t_parse *parse, t_philo *philo);
 void	ft_forks(t_parse *parse, t_philo *philo);
 void	*ft_checker(void *var);
+int		ft_thread_checker(t_philo *philo);
 
 /** LIBFT FUNCTIONS **/
 int		ft_strncmp(const char *str1, const char *str2, size_t num);
@@ -94,5 +95,6 @@ int		ft_atoi(const char *str);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putnbr_fd(int n, int fd);
 size_t	ft_strlen(const char *str);
+int		ft_isdigit(int c);
 
 #endif
