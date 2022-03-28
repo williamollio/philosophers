@@ -6,9 +6,6 @@
 The goal of this project is to solve the [dining philosophers problem](https://en.wikipedia.org/wiki/Dining_philosophers_problem) by using [multi-threading](https://www.geeksforgeeks.org/multithreading-c-2/).
 
 [Subject PDF](https://github.com/williamollio/philosophers/tree/master/subject)
-
-# Grade
-![wollio's 42Project Score](https://badge42.herokuapp.com/api/project/wollio/Philosophers)
 # About
 Each philosophers are represented by threads and are using shared memory which are the forks. In order to avoid anyconflicts regarding accessto to this common ressource, [mutexes](https://www.thegeekstuff.com/2012/05c-mutex-examples/) are used. Mutexes provide mutual exclusion over shared resources, as they can be locked andunlocked.
 Locking a ressource allows to deny access to it to other threads at the same time. Thus this could avoid [data races](https://docs.oracle.com/cd/E19205-01/820-0619/geojs/index.html) but could create [deadlocks](https://docs.oracle.com/cd/E19205-01/820-0619/geokj/index.html).
